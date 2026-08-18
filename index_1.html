@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Great Commission Ministries</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#20241f;
+    --parchment:#f2ecdb;
+    --parchment-dim:#e7ded0;
+    --indigo:#1c2740;
+    --indigo-deep:#131b2e;
+    --gold:#c9973f;
+    --gold-soft:#e0bd7a;
+    --forest:#33513f;
+    --forest-soft:#4c6e57;
+    --line: rgba(242,236,219,0.16);
+    --line-dark: rgba(32,36,31,0.14);
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--parchment);
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    line-height:1.6;
+    overflow-x:hidden;
+  }
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{animation-duration:0.01ms !important; transition-duration:0.01ms !important;}
+  }
+
+  h1,h2,h3,.display{
+    font-family:'Fraunces',serif;
+    font-weight:500;
+    letter-spacing:-0.01em;
+  }
+
+  a{color:inherit;text-decoration:none;}
+  img{max-width:100%;display:block;}
+
+  .eyebrow{
+    font-family:'JetBrains Mono',monospace;
+    font-size:0.72rem;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    opacity:0.75;
+  }
+
+  .wrap{
+    max-width:1180px;
+    margin:0 auto;
+    padding:0 32px;
+  }
+
+  /* ---------- NAV ---------- */
+  header.site-nav{
+    position:fixed;
+    top:0;left:0;right:0;
+    z-index:100;
+    background:rgba(28,39,64,0.92);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-inner{
+    max-width:1180px;
+    margin:0 auto;
+    padding:16px 32px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    color:var(--parchment);
+  }
+  .brand{
+    display:flex;
+    align-items:center;
+    gap:12px;
+  }
+  .brand-mark{
+    width:38px;height:38px;
+    border-radius:50%;
+    border:1.5px solid var(--gold-soft);
+    display:flex;align-items:center;justify-content:center;
+    font-family:'Fraunces',serif;
+    font-size:0.95rem;
+    color:var(--gold-soft);
+    flex-shrink:0;
+  }
+  .brand-text{display:flex;flex-direction:column;line-height:1.15;}
+  .brand-text strong{font-family:'Fraunces',serif;font-size:1.02rem;font-weight:500;}
+  .brand-text span{font-family:'JetBrains Mono',monospace;font-size:0.65rem;letter-spacing:0.1em;opacity:0.65;}
+
+  nav.links{display:flex;gap:32px;align-items:center;}
+  nav.links a{
+    font-size:0.88rem;
+    opacity:0.85;
+    transition:opacity 0.2s;
+    position:relative;
+  }
+  nav.links a:hover{opacity:1;}
+  .nav-cta{
+    border:1px solid var(--gold-soft);
+    padding:9px 18px;
+    border-radius:2px;
+    font-size:0.82rem !important;
+  }
+  .nav-toggle{display:none;background:none;border:none;color:var(--parchment);font-size:1.5rem;cursor:pointer;}
+
+  @media (max-width:860px){
+    nav.links{
+      position:absolute;
+      top:100%;left:0;right:0;
+      background:var(--indigo-deep);
+      flex-direction:column;
+      padding:24px 32px;
+      gap:20px;
+      display:none;
+      border-bottom:1px solid var(--line);
+    }
+    nav.links.open{display:flex;}
+    .nav-toggle{display:block;}
+    .nav-cta{align-self:flex-start;}
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    background:
+      radial-gradient(ellipse at 15% 20%, rgba(201,151,63,0.14), transparent 55%),
+      radial-gradient(ellipse at 85% 80%, rgba(76,110,87,0.18), transparent 55%),
+      linear-gradient(180deg,var(--indigo-deep),var(--indigo));
+    color:var(--parchment);
+    padding:168px 0 110px;
+    position:relative;
+    overflow:hidden;
+  }
+  .hero::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background-image:
+      linear-gradient(var(--line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--line) 1px, transparent 1px);
+    background-size:64px 64px;
+    opacity:0.25;
+    mask-image:radial-gradient(ellipse at center, black 0%, transparent 72%);
+  }
+  .hero-inner{
+    position:relative;
+    display:grid;
+    grid-template-columns:1.3fr 0.9fr;
+    gap:64px;
+    align-items:center;
+  }
+  @media (max-width:900px){
+    .hero-inner{grid-template-columns:1fr;}
+    .hero{padding:140px 0 80px;}
+  }
+  .hero-eyebrow{color:var(--gold-soft);margin-bottom:22px;}
+  .hero h1{
+    font-size:clamp(2.3rem, 5vw, 3.6rem);
+    line-height:1.14;
+    font-weight:400;
+    max-width:14ch;
+  }
+  .hero h1 em{
+    font-style:italic;
+    color:var(--gold-soft);
+    font-weight:400;
+  }
+  .hero-sub{
+    margin-top:26px;
+    max-width:46ch;
+    font-size:1.05rem;
+    color:rgba(242,236,219,0.78);
+  }
+  .hero-actions{
+    margin-top:38px;
+    display:flex;
+    gap:16px;
+    flex-wrap:wrap;
+  }
+  .btn{
+    display:inline-block;
+    padding:14px 28px;
+    font-size:0.9rem;
+    font-weight:500;
+    border-radius:2px;
+    transition:transform 0.2s ease, background 0.2s ease, color 0.2s ease;
+    cursor:pointer;
+    border:1px solid transparent;
+  }
+  .btn-primary{
+    background:var(--gold-soft);
+    color:var(--indigo-deep);
+  }
+  .btn-primary:hover{transform:translateY(-2px);background:var(--gold);}
+  .btn-ghost{
+    border-color:rgba(242,236,219,0.4);
+    color:var(--parchment);
+  }
+  .btn-ghost:hover{border-color:var(--parchment);transform:translateY(-2px);}
+
+  /* Stamp / seal signature element */
+  .seal-wrap{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+  }
+  .seal{
+    width:280px;height:280px;
+    max-width:100%;
+    position:relative;
+  }
+  .seal svg{width:100%;height:100%;}
+  .seal-ring-text{
+    animation:spin 34s linear infinite;
+    transform-origin:center;
+  }
+  @keyframes spin{to{transform:rotate(360deg);}}
+
+  /* ---------- VERSE SECTION ---------- */
+  .verse-section{
+    background:var(--parchment);
+    padding:110px 0;
+    position:relative;
+  }
+  .verse-quote{
+    max-width:820px;
+    margin:0 auto;
+    text-align:center;
+  }
+  .verse-quote .eyebrow{justify-content:center;display:flex;color:var(--forest-soft);margin-bottom:28px;}
+  .verse-quote p{
+    font-family:'Fraunces',serif;
+    font-style:italic;
+    font-weight:400;
+    font-size:clamp(1.4rem, 3vw, 2.1rem);
+    line-height:1.5;
+    color:var(--indigo);
+  }
+  .verse-quote cite{
+    display:block;
+    margin-top:28px;
+    font-style:normal;
+    font-family:'JetBrains Mono',monospace;
+    font-size:0.8rem;
+    letter-spacing:0.08em;
+    color:var(--forest-soft);
+  }
+
+  /* ---------- COMMISSION SEQUENCE ---------- */
+  .commission{
+    background:var(--parchment-dim);
+    padding:100px 0 120px;
+    border-top:1px solid var(--line-dark);
+    border-bottom:1px solid var(--line-dark);
+  }
+  .section-head{
+    max-width:640px;
+    margin-bottom:64px;
+  }
+  .section-head .eyebrow{color:var(--forest-soft);margin-bottom:16px;}
+  .section-head h2{
+    font-size:clamp(1.8rem,3.4vw,2.5rem);
+    font-weight:400;
+  }
+  .section-head p{
+    margin-top:16px;
+    color:rgba(32,36,31,0.68);
+    font-size:1rem;
+    max-width:56ch;
+  }
+
+  .commission-steps{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:1px;
+    background:var(--line-dark);
+    border:1px solid var(--line-dark);
+  }
+  @media (max-width:900px){
+    .commission-steps{grid-template-columns:1fr 1fr;}
+  }
+  @media (max-width:560px){
+    .commission-steps{grid-template-columns:1fr;}
+  }
+  .step{
+    background:var(--parchment-dim);
+    padding:36px 28px 40px;
+    position:relative;
+    opacity:0;
+    transform:translateY(18px);
+    transition:opacity 0.6s ease, transform 0.6s ease;
+  }
+  .step.in{opacity:1;transform:translateY(0);}
+  .step .word{
+    font-family:'JetBrains Mono',monospace;
+    font-size:0.7rem;
+    letter-spacing:0.12em;
+    color:var(--gold);
+    text-transform:uppercase;
+  }
+  .step h3{
+    margin-top:14px;
+    font-size:1.35rem;
+    font-weight:500;
+    color:var(--indigo);
+  }
+  .step p{
+    margin-top:12px;
+    font-size:0.92rem;
+    color:rgba(32,36,31,0.66);
+  }
+  .step-verb{
+    position:absolute;
+    top:28px;right:28px;
+    font-family:'Fraunces',serif;
+    font-style:italic;
+    font-size:1.6rem;
+    color:rgba(201,151,63,0.35);
+  }
+
+  /* ---------- RESOURCES / PDF GUIDES ---------- */
+  .resources{
+    background:var(--indigo-deep);
+    color:var(--parchment);
+    padding:110px 0;
+  }
+  .resources .section-head p{color:rgba(242,236,219,0.66);}
+  .res-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:28px;
+  }
+  @media (max-width:900px){.res-grid{grid-template-columns:1fr;}}
+  .res-card{
+    border:1px solid var(--line);
+    padding:34px 28px;
+    display:flex;
+    flex-direction:column;
+    transition:border-color 0.25s ease, transform 0.25s ease;
+  }
+  .res-card:hover{
+    border-color:var(--gold-soft);
+    transform:translateY(-4px);
+  }
+  .res-tag{
+    font-family:'JetBrains Mono',monospace;
+    font-size:0.68rem;
+    letter-spacing:0.1em;
+    color:var(--gold-soft);
+    margin-bottom:16px;
+  }
+  .res-card h3{
+    font-size:1.25rem;
+    font-weight:500;
+  }
+  .res-card p{
+    margin-top:12px;
+    font-size:0.92rem;
+    color:rgba(242,236,219,0.62);
+    flex-grow:1;
+  }
+  .res-download{
+    margin-top:24px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    border:1px solid var(--gold-soft);
+    color:var(--gold-soft);
+    padding:12px 18px;
+    font-size:0.85rem;
+    font-weight:500;
+    transition:background 0.2s ease, color 0.2s ease;
+  }
+  .res-download:hover{
+    background:var(--gold-soft);
+    color:var(--indigo-deep);
+  }
+  .res-download svg{flex-shrink:0;}
+
+  /* ---------- REACH OUT / PRAYER ---------- */
+  .reach{
+    background:var(--parchment-dim);
+    padding:100px 0;
+    border-top:1px solid var(--line-dark);
+  }
+  .reach-inner{
+    display:grid;
+    grid-template-columns:1.1fr 0.9fr;
+    gap:56px;
+    align-items:start;
+  }
+  @media (max-width:900px){.reach-inner{grid-template-columns:1fr;}}
+  .reach-card{
+    background:var(--parchment);
+    border:1px solid var(--line-dark);
+    padding:36px 32px;
+  }
+  .reach-card h3{
+    font-size:1.3rem;
+    font-weight:500;
+    color:var(--indigo);
+  }
+  .reach-card > p{
+    margin-top:10px;
+    color:rgba(32,36,31,0.66);
+    font-size:0.94rem;
+  }
+  .prayer-form{
+    margin-top:24px;
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+  }
+  .prayer-form label{
+    font-family:'JetBrains Mono',monospace;
+    font-size:0.68rem;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--forest-soft);
+    margin-bottom:6px;
+    display:block;
+  }
+  .field-row{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:14px;
+  }
+  @media (max-width:520px){.field-row{grid-template-columns:1fr;}}
+  .prayer-form input,
+  .prayer-form textarea{
+    width:100%;
+    background:var(--parchment-dim);
+    border:1px solid var(--line-dark);
+    padding:12px 14px;
+    font-family:'Inter',sans-serif;
+    font-size:0.9rem;
+    color:var(--ink);
+    border-radius:2px;
+    resize:vertical;
+  }
+  .prayer-form textarea{min-height:110px;}
+  .prayer-form input:focus,
+  .prayer-form textarea:focus{
+    outline:none;
+    border-color:var(--gold);
+  }
+  .prayer-form .confidential{
+    font-size:0.78rem;
+    color:rgba(32,36,31,0.55);
+    display:flex;
+    gap:8px;
+    align-items:flex-start;
+  }
+  .prayer-form button{
+    align-self:flex-start;
+    background:var(--forest);
+    color:var(--parchment);
+    border:none;
+    padding:13px 26px;
+    font-weight:600;
+    font-size:0.88rem;
+    border-radius:2px;
+    cursor:pointer;
+    transition:background 0.2s;
+    margin-top:4px;
+  }
+  .prayer-form button:hover{background:var(--forest-soft);}
+
+  .contact-list{
+    margin-top:22px;
+    display:flex;
+    flex-direction:column;
+    gap:18px;
+  }
+  .contact-item{
+    display:flex;
+    gap:16px;
+    align-items:flex-start;
+  }
+  .contact-item .ci-icon{
+    width:38px;height:38px;
+    flex-shrink:0;
+    border-radius:50%;
+    border:1px solid var(--gold);
+    display:flex;align-items:center;justify-content:center;
+    color:var(--gold);
+  }
+  .contact-item h4{
+    font-family:'Fraunces',serif;
+    font-weight:500;
+    font-size:1rem;
+    color:var(--indigo);
+    margin-bottom:3px;
+  }
+  .contact-item a,
+  .contact-item span{
+    font-size:0.88rem;
+    color:rgba(32,36,31,0.68);
+    display:block;
+  }
+  .contact-item a:hover{color:var(--forest);}
+
+
+  /* ---------- FOOTER ---------- */
+  footer{
+    background:var(--indigo-deep);
+    color:rgba(242,236,219,0.6);
+    padding:52px 0 36px;
+  }
+  .footer-inner{
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:24px;
+    padding-bottom:28px;
+    border-bottom:1px solid var(--line);
+    margin-bottom:22px;
+  }
+  .footer-brand strong{
+    font-family:'Fraunces',serif;
+    color:var(--parchment);
+    font-size:1.1rem;
+    display:block;
+    margin-bottom:8px;
+  }
+  .footer-links{
+    display:flex;
+    gap:40px;
+    flex-wrap:wrap;
+  }
+  .footer-col h4{
+    font-family:'JetBrains Mono',monospace;
+    font-size:0.7rem;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    color:var(--gold-soft);
+    margin-bottom:12px;
+  }
+  .footer-col a{
+    display:block;
+    font-size:0.85rem;
+    margin-bottom:8px;
+    opacity:0.8;
+  }
+  .footer-col a:hover{opacity:1;}
+  .footer-bottom{
+    font-size:0.78rem;
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:10px;
+  }
+
+  /* scroll reveal generic */
+  .reveal{
+    opacity:0;
+    transform:translateY(22px);
+    transition:opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.in{opacity:1;transform:translateY(0);}
+</style>
+</head>
+<body>
+
+<header class="site-nav">
+  <div class="nav-inner">
+    <div class="brand">
+      <div class="brand-mark">GC</div>
+      <div class="brand-text">
+        <strong>Great Commission Ministries</strong>
+        <span>MATTHEW 28:19&ndash;20</span>
+      </div>
+    </div>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">&#9776;</button>
+    <nav class="links" id="navLinks">
+      <a href="#verse">The Verse</a>
+      <a href="#commission">The Commission</a>
+      <a href="#resources">Guides</a>
+      <a href="#reach" class="nav-cta">Prayer &amp; Contact</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap hero-inner">
+    <div>
+      <div class="hero-eyebrow eyebrow">Built on one sentence of Scripture</div>
+      <h1>Go therefore, and make <em>disciples</em> of all nations.</h1>
+      <p class="hero-sub">Great Commission Ministries exists for one reason: Jesus told us to go, make disciples, baptize, and teach. These free guides break that command into something you can actually do this week.</p>
+      <div class="hero-actions">
+        <a href="#resources" class="btn btn-primary">Get the Free Guides</a>
+        <a href="#verse" class="btn btn-ghost">Read the Verse</a>
+      </div>
+    </div>
+    <div class="seal-wrap">
+      <div class="seal">
+        <svg viewBox="0 0 280 280">
+          <circle cx="140" cy="140" r="128" fill="none" stroke="#e0bd7a" stroke-width="1.2" opacity="0.55"/>
+          <circle cx="140" cy="140" r="108" fill="none" stroke="#e0bd7a" stroke-width="1" opacity="0.35"/>
+          <g class="seal-ring-text">
+            <path id="ringPath" d="M 140,140 m -96,0 a 96,96 0 1,1 192,0 a 96,96 0 1,1 -192,0" fill="none"/>
+            <text font-family="JetBrains Mono, monospace" font-size="10.5" letter-spacing="3.5" fill="#e0bd7a">
+              <textPath href="#ringPath" startOffset="0%">GO &#8226; TEACH &#8226; BAPTIZE &#8226; DISCIPLE &#8226; GO &#8226; TEACH &#8226; BAPTIZE &#8226; DISCIPLE &#8226; </textPath>
+            </text>
+          </g>
+          <circle cx="140" cy="140" r="70" fill="none" stroke="#f2ecdb" stroke-width="1" opacity="0.5"/>
+          <text x="140" y="128" text-anchor="middle" font-family="Fraunces, serif" font-style="italic" font-size="17" fill="#f2ecdb">Sent to</text>
+          <text x="140" y="156" text-anchor="middle" font-family="Fraunces, serif" font-style="italic" font-size="22" fill="#e0bd7a">all nations</text>
+          <line x1="112" y1="168" x2="168" y2="168" stroke="#c9973f" stroke-width="1" opacity="0.6"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="verse-section" id="verse">
+  <div class="wrap verse-quote reveal">
+    <div class="eyebrow">Matthew 28:18&ndash;20 &middot; ESV</div>
+    <p>&ldquo;All authority in heaven and on earth has been given to me. Go therefore and make disciples of all nations, baptizing them in the name of the Father and of the Son and of the Holy Spirit, teaching them to observe all that I have commanded you. And behold, I am with you always, to the end of the age.&rdquo;</p>
+    <cite>&mdash; Jesus, to His disciples, on a mountain in Galilee</cite>
+  </div>
+</section>
+
+<section class="commission" id="commission">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">The four commands, in order</div>
+      <h2>One verse. Four movements.</h2>
+      <p>The Great Commission isn't a slogan &mdash; it's a sequence. Each guide below walks out one part of what Jesus actually told us to do.</p>
+    </div>
+    <div class="commission-steps">
+      <div class="step"><span class="step-verb">I</span><span class="word">Go</span><h3>Leave the building</h3><p>Discipleship starts by going &mdash; across the street, across town, or across the world. Carry your faith into ordinary places.</p></div>
+      <div class="step"><span class="step-verb">II</span><span class="word">Make Disciples</span><h3>Invite, don't just inform</h3><p>Faithfulness is measured by lives changed, not information shared. It starts with one relationship at a time.</p></div>
+      <div class="step"><span class="step-verb">III</span><span class="word">Baptize</span><h3>Mark the decision</h3><p>Baptism is the public, physical yes to following Jesus &mdash; a clear line between the old life and the new.</p></div>
+      <div class="step"><span class="step-verb">IV</span><span class="word">Teach</span><h3>Keep building depth</h3><p>Discipleship doesn't end at the water. Ongoing teaching roots believers in Scripture for the long run.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="resources" id="resources">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow" style="color:var(--gold);">Free downloadable guides</div>
+      <h2>Take the Commission home</h2>
+      <p>Three short, practical guides built around the second half of Matthew 28 &mdash; for anyone who wants to actually live it out, not just read about it.</p>
+    </div>
+    <div class="res-grid">
+
+      <div class="res-card reveal">
+        <div class="res-tag">GUIDE 01 &middot; MATTHEW 28:19</div>
+        <h3>How to Make Disciples</h3>
+        <p>A practical starting point for turning &ldquo;go&rdquo; into a real relationship &mdash; how to find someone to invest in, what to actually do when you meet, and how to help it multiply.</p>
+        <a class="res-download" href="how-to-make-disciples.pdf" download>
+          <span>Download PDF</span>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v13m0 0l-5-5m5 5l5-5M4 21h16"/></svg>
+        </a>
+      </div>
+
+      <div class="res-card reveal">
+        <div class="res-tag">GUIDE 02 &middot; MATTHEW 28:20</div>
+        <h3>How to Obey God&rsquo;s Word</h3>
+        <p>Scripture was never meant to only be studied. A short, honest guide to closing the gap between what you read and what you actually do.</p>
+        <a class="res-download" href="how-to-obey-gods-word.pdf" download>
+          <span>Download PDF</span>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v13m0 0l-5-5m5 5l5-5M4 21h16"/></svg>
+        </a>
+      </div>
+
+      <div class="res-card reveal">
+        <div class="res-tag">GUIDE 03 &middot; MATTHEW 28:20</div>
+        <h3>How to Teach God&rsquo;s Word</h3>
+        <p>Every disciple eventually teaches someone else. A simple structure for opening Scripture with others honestly and clearly, whatever your experience level.</p>
+        <a class="res-download" href="how-to-teach-gods-word.pdf" download>
+          <span>Download PDF</span>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v13m0 0l-5-5m5 5l5-5M4 21h16"/></svg>
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="reach" id="reach">
+  <div class="wrap reach-inner">
+
+    <div class="reach-card reveal">
+      <h3>Submit a Prayer Request</h3>
+      <p>Whatever it is, you don't have to carry it alone. Send it here and our team will pray over it &mdash; privately, no judgment.</p>
+      <form class="prayer-form" onsubmit="event.preventDefault(); this.querySelector('button').textContent='Received &mdash; we\'re praying.'; this.querySelector('button').disabled=true;">
+        <div class="field-row">
+          <div>
+            <label for="pr-name">Name (optional)</label>
+            <input id="pr-name" type="text" placeholder="Jane Doe">
+          </div>
+          <div>
+            <label for="pr-email">Email (optional)</label>
+            <input id="pr-email" type="email" placeholder="you@email.com">
+          </div>
+        </div>
+        <div>
+          <label for="pr-request">Your Request</label>
+          <textarea id="pr-request" placeholder="Share as much or as little as you'd like..." required></textarea>
+        </div>
+        <label class="confidential">
+          <input type="checkbox" style="width:auto;margin-top:2px;">
+          <span>Keep this request confidential &mdash; visible to the prayer team only.</span>
+        </label>
+        <button type="submit">Submit Request</button>
+      </form>
+    </div>
+
+    <div class="reach-card reveal">
+      <h3>Other Ways to Reach Us</h3>
+      <p>Questions, feedback on the guides, or just want to talk to a real person &mdash; here's how.</p>
+      <div class="contact-list">
+        <div class="contact-item">
+          <div class="ci-icon">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 4h16v16H4z" opacity="0"/><path d="M3 6l9 7 9-7M3 6v12h18V6" /></svg>
+          </div>
+          <div>
+            <h4>Email</h4>
+            <a href="mailto:GreatCommissionMinistries@gmail.com">GreatCommissionMinistries@gmail.com</a>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="ci-icon">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 16.9v3a2 2 0 01-2.2 2 19.8 19.8 0 01-8.6-3.1 19.5 19.5 0 01-6-6 19.8 19.8 0 01-3.1-8.7A2 2 0 014.1 2h3a2 2 0 012 1.7c.1 1 .3 2 .7 3a2 2 0 01-.4 2.1L8 10.3a16 16 0 006 6l1.5-1.4a2 2 0 012.1-.4c1 .4 2 .6 3 .7a2 2 0 011.4 2.7z"/></svg>
+          </div>
+          <div>
+            <h4>Phone</h4>
+            <a href="tel:+27665003603">066 500 3603</a>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="ci-icon">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 11.5a8.5 8.5 0 01-12.4 7.5L3 20l1.1-5.4A8.5 8.5 0 1121 11.5z"/></svg>
+          </div>
+          <div>
+            <h4>Message Us</h4>
+            <span>Fastest response through the form or email above &mdash; usually within a day.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <strong>Great Commission Ministries</strong>
+        <span class="eyebrow">Go &middot; Make Disciples &middot; Baptize &middot; Teach</span>
+      </div>
+      <div class="footer-links">
+        <div class="footer-col">
+          <h4>Explore</h4>
+          <a href="#verse">The Verse</a>
+          <a href="#commission">The Commission</a>
+          <a href="#resources">Guides</a>
+          <a href="#reach">Prayer &amp; Contact</a>
+        </div>
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <a href="mailto:GreatCommissionMinistries@gmail.com">GreatCommissionMinistries@gmail.com</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 Great Commission Ministries.</span>
+      <span>&ldquo;I am with you always.&rdquo; &mdash; Matthew 28:20</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // mobile nav toggle
+  const navToggle = document.getElementById('navToggle');
+  const navLinks = document.getElementById('navLinks');
+  navToggle.addEventListener('click', () => navLinks.classList.toggle('open'));
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+
+  // scroll reveal
+  const revealEls = document.querySelectorAll('.reveal, .step');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting){
+        entry.target.classList.add('in');
+        io.unobserve(entry.target);
+      }
+    });
+  }, {threshold:0.15});
+  revealEls.forEach(el => io.observe(el));
+</script>
+
+</body>
+</html>
