@@ -6,13 +6,12 @@ discipleship guides.
 ## Folder structure
 
 ```
-gcm-site/
-├── index.html              # the whole site (HTML/CSS/JS in one file)
-├── resources/               # the three PDF guides, linked from the page
-│   ├── how-to-make-disciples.pdf
-│   ├── how-to-obey-gods-word.pdf
-│   └── how-to-teach-gods-word.pdf
-└── README.md
+GreatCommissionMinistries2819/
+├── index.html
+├── README.md
+├── how-to-make-disciples.pdf
+├── how-to-obey-gods-word.pdf
+└── how-to-teach-gods-word.pdf
 ```
 
 Keep `index.html` and the `resources/` folder together — the download
