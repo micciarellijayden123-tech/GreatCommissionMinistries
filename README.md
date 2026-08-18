@@ -1,2 +1,0 @@
-# GreatCommissionMinistries
-Great Commission Website
